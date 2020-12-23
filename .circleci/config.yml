@@ -1,13 +1,18 @@
 version: 2.1
 
-orbs:
-  sonarqube: clicklogiq/sonarqube@1.0.1
-
 jobs:
-  analyze
+  build:
+    docker:
+      - image: cimg/ruby:2.7-node
+    steps:
+      - checkout
+      - sonarcloud/scan
+
+orbs:
+  sonarcloud: sonarsource/sonarcloud@1.0.1
 
 workflows:
-  version: 2
-  try_sonarqube:
+  main:
     jobs:
-      - analyze
+      - build:
+          context: SonarCloud

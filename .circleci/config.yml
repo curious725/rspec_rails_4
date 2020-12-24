@@ -18,5 +18,5 @@ orbs:
 workflows:
   main:
     jobs:
-      - build:
+      - build
 
